@@ -1,0 +1,13 @@
+{
+    "name": "tinect/mailarchive",
+    "keywords": ["shopware", "mail"],
+    "description": "",
+    "license": "MIT",
+    "type": "shopware-plugin",
+    "extra": {
+        "installer-name": "TinectMailArchive"
+    },
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
