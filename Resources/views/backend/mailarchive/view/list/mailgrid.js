@@ -144,11 +144,16 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
             text: 'Clear Archive',
             iconCls: 'sprite-minus-circle-frame',
             handler: function () {
-                Ext.Ajax.request({
-                    url: '{url action=clear}',
-                    success: function (response) {
-                        me.store.load();
+                Ext.MessageBox.confirm('', 'Are you sure?', function (apply) {
+                    if (apply !== 'yes') {
+                        return;
                     }
+                    Ext.Ajax.request({
+                        url: '{url action=clear}',
+                        success: function (response) {
+                            me.store.load();
+                        }
+                    });
                 });
             }
         }));
