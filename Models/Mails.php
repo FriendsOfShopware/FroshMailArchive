@@ -68,6 +68,13 @@ class Mails extends ModelEntity
     protected $attachments;
 
     /**
+     *
+     * @var string
+     * @ORM\Column(name="eml", type="text", nullable=true)
+     */
+    protected $eml;
+
+    /**
      * Mails constructor.
      */
     public function __construct()
@@ -201,5 +208,21 @@ class Mails extends ModelEntity
     public function setAttachments($attachments)
     {
         $this->attachments = $attachments;
+    }
+
+    /**
+     * @param string $eml
+     */
+    public function setEml($eml)
+    {
+        $this->eml = $eml;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEml()
+    {
+        return $this->eml;
     }
 }

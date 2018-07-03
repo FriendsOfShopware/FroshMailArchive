@@ -7,7 +7,8 @@ use TinectMailArchive\Models\Mails;
 /**
  * Class Shopware_Controllers_Backend_Mailarchive
  */
-class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Backend_Application implements \Shopware\Components\CSRFWhitelistAware {
+class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Backend_Application implements \Shopware\Components\CSRFWhitelistAware
+{
 
     /**
      * @var string
@@ -26,7 +27,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     public function lastMailAction()
     {
         $this->View()->success = true;
-        $this->View()->id = (int) $this->container->get('dbal_connection')->fetchColumn('SELECT id FROM s_plugin_tinectmailarchive ORDER BY id DESC LIMIT 1');
+        $this->View()->id = (int)$this->container->get('dbal_connection')->fetchColumn('SELECT id FROM s_plugin_tinectmailarchive ORDER BY id DESC LIMIT 1');
     }
 
     /**
@@ -35,7 +36,8 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     public function getNewMailsAction()
     {
         $this->View()->success = true;
-        $mails = $this->container->get('dbal_connection')->fetchAll('SELECT id, subject, receiverAddress FROM s_plugin_tinectmailarchive WHERE id > :id ORDER BY id ASC', ['id' => $this->Request()->getParam('id')]);
+        $mails = $this->container->get('dbal_connection')->fetchAll('SELECT id, subject, receiverAddress FROM s_plugin_tinectmailarchive WHERE id > :id ORDER BY id ASC',
+            ['id' => $this->Request()->getParam('id')]);
         $this->View()->mails = $mails;
     }
 
@@ -76,6 +78,27 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     }
 
     /**
+     * Download a eml
+     */
+    public function downloadAction()
+    {
+        $emlId = $this->Request()->getParam('id');
+        $eml = $this->getModelManager()->find(Mails::class, $emlId);
+
+        $emlData = $eml->getEml();
+
+        if ($emlData) {
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $eml->getCreated()->format('Y-m-d His') . ' ' . $eml->getSubject() . '.eml"');
+
+            echo $emlData;
+        } else {
+            echo "no eml-data saved";
+        }
+        exit();
+    }
+
+    /**
      * Clear all entries in mailbox
      */
     public function clearAction()
@@ -93,6 +116,6 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
      */
     public function getWhitelistedCSRFActions()
     {
-        return ['downloadAttachment'];
+        return ['downloadAttachment', 'download'];
     }
 }

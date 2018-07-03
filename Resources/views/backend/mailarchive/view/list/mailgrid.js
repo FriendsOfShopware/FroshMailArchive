@@ -45,8 +45,20 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 flex: 1.5
             },
             Ext.create('Ext.grid.column.Action', {
-                width: 30,
+                width: 60,
                 items: [
+                    {
+                        iconCls: 'sprite-drive-download',
+                        tooltip: 'Download',
+                        action: 'download',
+                        handler: function (view, rowIndex) {
+                            var store = view.getStore(),
+                                record = store.getAt(rowIndex),
+                                link = "{url action=download}"
+                                    + "?id=" + record.raw.id;
+                            window.open(link, '_blank');
+                        }
+                    },
                     {
                         iconCls: 'sprite-minus-circle-frame',
                         tooltip: 'Delete',

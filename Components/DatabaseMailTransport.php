@@ -57,7 +57,8 @@ class DatabaseMailTransport extends \Zend_Mail_Transport_Abstract
             'receiverAddress' => implode(',', $this->_mail->getRecipients()),
             'subject' => iconv_mime_decode($this->_mail->getSubject()),
             'bodyText' => $this->_mail->getPlainBodyText(),
-            'bodyHtml' => $this->_mail->getPlainBody()
+            'bodyHtml' => $this->_mail->getPlainBody(),
+            'eml' => $this->header . $this->EOL . $this->body
         ]);
 
         $insertId = $this->connection->lastInsertId();
