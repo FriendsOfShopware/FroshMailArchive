@@ -4,7 +4,7 @@
 
     <label>TinectMailArchive</label>
 
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <copyright>(c) by tinect</copyright>
     <license>MIT</license>
     <link>https://github.com/tinect/TinectMailArchive</link>
@@ -18,7 +18,8 @@
 <h3 id="features">Features</h3>
 
 <ul>
-<li></li>
+<li>Download Mail as EML-File</li>
+<li>Search Mails</li>
 
 </ul>
 
@@ -35,6 +36,11 @@
 <p>Feel free to fork and send <a href="https://github.com/tinect/TinectMailArchive" target="_blank">pull requests</a>!</p>
         ]]>
     </description>
+
+    <changelog version="1.0.0">
+        <changes lang="de">Veröffentlichung</changes>
+        <changes>Release</changes>
+    </changelog>
 
     <changelog version="0.0.1">
         <changes lang="de">Erstveröffentlichung</changes>
