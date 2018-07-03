@@ -8,6 +8,9 @@ This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
 ![Preview](preview.jpg)
 
+- Download Mail as EML-File
+- Search Mails
+
 ### Planned Features
 
 - do not archive Mails catched by MailCatcher
