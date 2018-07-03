@@ -146,7 +146,6 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                             value: value
                         });
                     }
-                    console.log(value);
                 }
             }
         }));

@@ -10,6 +10,7 @@ This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
 ### Planned Features
 
+- do not archive Mails catched by MailCatcher
 - ...idea?
 
 
