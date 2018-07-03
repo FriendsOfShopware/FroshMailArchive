@@ -2,9 +2,11 @@
 
 ## Description
 
-This plugins adds an MailArchive to your Shopware-Backend.
+This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
 ### Features
+
+![Preview](preview.jpg)
 
 ### Planned Features
 
