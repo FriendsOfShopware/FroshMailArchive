@@ -14,6 +14,10 @@
             <argument type="service" id="dbal_connection" />
         </service>
 
+        <service id="tinect_mail_archive.subscriber.backend_subscriber" class="TinectMailArchive\Subscriber\BackendSubscriber">
+            <argument type="string">%tinect_mail_archive.view_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
         <service id="tinect_mail_archive.subscriber.on_mail_subscriber" class="TinectMailArchive\Subscriber\OnMailSubscriber">
             <argument type="service" id="service_container" />
             <tag name="shopware.event_subscriber"/>
