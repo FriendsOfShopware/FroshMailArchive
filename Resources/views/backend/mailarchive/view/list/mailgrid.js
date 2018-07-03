@@ -26,23 +26,37 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                         return value;
                     }
 
-                    return Ext.util.Format.date(value) + ' ' + Ext.util.Format.date(value, timeFormat);
+                    var dateformat = Ext.util.Format.date(value) + ' ' + Ext.util.Format.date(value, timeFormat);
+                    metaData.tdAttr = 'data-qtip="' + dateformat + '"';
+                    return dateformat;
                 }
             },
             {
                 text: 'From',
                 dataIndex: 'senderAddress',
-                flex: 1
+                flex: 1,
+                renderer: function (value, metaData, record) {
+                    metaData.tdAttr = 'data-qtip="' + value + '"';
+                    return value;
+                }
             },
             {
                 text: 'To',
                 dataIndex: 'receiverAddress',
-                flex: 1
+                flex: 1,
+                renderer: function (value, metaData, record) {
+                    metaData.tdAttr = 'data-qtip="' + value + '"';
+                    return value;
+                }
             },
             {
                 text: 'Subject',
                 dataIndex: 'subject',
-                flex: 1.5
+                flex: 1.5,
+                renderer: function (value, metaData, record) {
+                    metaData.tdAttr = 'data-qtip="' + value + '"';
+                    return value;
+                }
             },
             Ext.create('Ext.grid.column.Action', {
                 width: 60,
