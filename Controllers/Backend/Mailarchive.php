@@ -17,7 +17,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
 
     public function preDispatch()
     {
-        if (!in_array(strtolower($this->request->getActionName()), ['download', 'downloadAttachment'])) {
+        if (!in_array($this->request->getActionName(), ['download', 'downloadAttachment'])) {
             parent::preDispatch();
             $this->View()->addTemplateDir($this->container->getParameter('tinect_mail_archive.view_dir'));
         }
