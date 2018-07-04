@@ -17,8 +17,10 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
 
     public function preDispatch()
     {
-        parent::preDispatch();
-        $this->View()->addTemplateDir($this->container->getParameter('tinect_mail_archive.view_dir'));
+        if (!in_array(strtolower($this->request->getActionName()), ['download', 'downloadAttachment'])) {
+            parent::preDispatch();
+            $this->View()->addTemplateDir($this->container->getParameter('tinect_mail_archive.view_dir'));
+        }
     }
 
     /**
@@ -67,14 +69,18 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
      */
     public function downloadAttachmentAction()
     {
+        $this->Front()->Plugins()->ViewRenderer()->setNoRender();
+
         $attachmentId = $this->Request()->getParam('id');
         $attachment = $this->getModelManager()->find(Attachment::class, $attachmentId);
 
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . $attachment->getFileName() . '"');
+        $response = $this->response;
 
-        echo base64_decode($attachment->getContent());
-        exit();
+        $response->setHeader('Content-Type', 'application/octet-stream');
+        $response->setHeader('Content-Disposition',
+            'attachment; filename="' . $attachment->getFileName() . '.eml"');
+
+        $this->response->setBody(base64_decode($attachment->getContent()));
     }
 
     /**
@@ -82,20 +88,24 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
      */
     public function downloadAction()
     {
+        $this->Front()->Plugins()->ViewRenderer()->setNoRender();
+
         $emlId = $this->Request()->getParam('id');
         $eml = $this->getModelManager()->find(Mails::class, $emlId);
 
         $emlData = $eml->getEml();
 
-        if ($emlData) {
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . $eml->getCreated()->format('Y-m-d His') . ' ' . $eml->getSubject() . '.eml"');
+        $response = $this->response;
 
-            echo $emlData;
+        if ($emlData) {
+            $response->setHeader('Content-Type', 'application/octet-stream');
+            $response->setHeader('Content-Disposition',
+                'attachment; filename="' . $eml->getCreated()->format('Y-m-d His') . ' ' . $eml->getSubject() . '.eml"');
+
+            $this->response->setBody($emlData);
         } else {
-            echo "no eml-data saved";
+            $this->response->setBody('no eml-data saved');
         }
-        exit();
     }
 
     /**
