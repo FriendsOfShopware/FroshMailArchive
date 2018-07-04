@@ -13,13 +13,14 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Window', {
 
         me.items = [
             Ext.create('Shopware.apps.Mailarchive.view.list.Mailgrid', {
-                flex: 1,
+                flex: 0.6,
                 showId: me.showId
             }),
             Ext.create('Ext.container.Container', {
                 layout: 'fit',
                 itemId: 'mail-container',
-                flex: 2
+                flex: 1,
+                maxWidth: 800
             })
         ];
 
