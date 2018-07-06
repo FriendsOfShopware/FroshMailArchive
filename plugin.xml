@@ -4,7 +4,7 @@
 
     <label>TinectMailArchive</label>
 
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <copyright>(c) by tinect</copyright>
     <license>MIT</license>
     <link>https://github.com/tinect/TinectMailArchive</link>
@@ -20,6 +20,7 @@
 <ul>
 <li>Download Mail as EML-File</li>
 <li>Search Mails</li>
+<li>shows notification for new mails, if accepted</li>
 
 </ul>
 
@@ -36,6 +37,19 @@
 <p>Feel free to fork and send <a href="https://github.com/tinect/TinectMailArchive" target="_blank">pull requests</a>!</p>
         ]]>
     </description>
+
+    <changelog version="1.0.1">
+        <changes lang="de"><![CDATA[
+        - Tooltips bei den Mails<br/>
+        - Bestätigungsfenster beim Leeren des Archivs<br/>
+        - Optimiere Größe der Fenster<br/>
+        ]]></changes>
+        <changes><![CDATA[
+        - Tooltips in maillist<br/>
+        - add conformMessageBox before clearing archive<br/>
+        - set maxwidth for mail-container<br/>
+        ]]></changes>
+    </changelog>
 
     <changelog version="1.0.0">
         <changes lang="de">Veröffentlichung</changes>

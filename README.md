@@ -10,6 +10,7 @@ This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
 - Download Mail as EML-File
 - Search Mails
+- shows notification for new mails, if accepted
 
 ### Planned Features
 
