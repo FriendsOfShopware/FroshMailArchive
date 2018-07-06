@@ -14,15 +14,9 @@ use TinectMailArchive\Models\Mails;
 class TinectMailArchive extends Plugin
 {
 
-    public function activate(ActivateContext $context)
-    {
-        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
-    }
-
     public function update(UpdateContext $context)
     {
         $this->updateDatabase();
-        $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 
     public function install(InstallContext $context)
