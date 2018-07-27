@@ -4,6 +4,8 @@
 
 This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
+Please note: TinectMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.
+
 ### Features
 
 ![Preview](preview.jpg)
@@ -14,7 +16,6 @@ This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
 ### Planned Features
 
-- do not archive Mails catched by MailCatcher
 - ...idea?
 
 

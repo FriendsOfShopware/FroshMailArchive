@@ -30,11 +30,12 @@
 <li>...idea?</li>
 </ul>
 
+<h2 id="contributing">Contributing</h2>
+<p>Feel free to fork and send <a href="https://github.com/tinect/TinectMailArchive" target="_blank">pull requests</a>!</p>
+
+<p>Please note: TinectMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.</p>
 <p>Thanks to <a href="https://github.com/FriendsOfShopware/FroshMailCatcher" target="_blank">@FroshMailCatcher</a> for your work!</p>
 
-<h2 id="contributing">Contributing</h2>
-
-<p>Feel free to fork and send <a href="https://github.com/tinect/TinectMailArchive" target="_blank">pull requests</a>!</p>
         ]]>
     </description>
 
