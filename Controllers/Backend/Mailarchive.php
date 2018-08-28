@@ -75,10 +75,9 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
         $attachment = $this->getModelManager()->find(Attachment::class, $attachmentId);
 
         $response = $this->response;
-
         $response->setHeader('Content-Type', 'application/octet-stream');
         $response->setHeader('Content-Disposition',
-            'attachment; filename="' . $attachment->getFileName() . '.eml"');
+            'attachment; filename="' . $attachment->getFileName().'"');
 
         $this->response->setBody(base64_decode($attachment->getContent()));
     }
