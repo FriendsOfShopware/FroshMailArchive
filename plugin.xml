@@ -4,7 +4,7 @@
 
     <label>TinectMailArchive</label>
 
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <copyright>(c) by tinect</copyright>
     <license>MIT</license>
     <link>https://github.com/tinect/TinectMailArchive</link>
@@ -39,6 +39,16 @@
         ]]>
     </description>
 
+
+    <changelog version="1.0.2">
+        <changes lang="de"><![CDATA[
+        - fix Download von Attachments<br/>
+        ]]></changes>
+        <changes><![CDATA[
+        - fix download of attachments<br/>
+        ]]></changes>
+    </changelog>
+    
     <changelog version="1.0.1">
         <changes lang="de"><![CDATA[
         - Tooltips bei den Mails<br/>
