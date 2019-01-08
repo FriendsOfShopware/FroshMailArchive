@@ -1,12 +1,12 @@
 <?php
 
-namespace TinectMailArchive\Components;
+namespace FroshMailArchive\Components;
 
 use Doctrine\DBAL\Connection;
 
 /**
  * Class DatabaseMailTransport
- * @package TinectMailArchive\Components
+ * @package FroshMailArchive\Components
  */
 class DatabaseMailTransport extends \Zend_Mail_Transport_Abstract
 {

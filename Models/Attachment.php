@@ -1,6 +1,6 @@
 <?php
 
-namespace TinectMailArchive\Models;
+namespace FroshMailArchive\Models;
 
 use Shopware\Components\Model\ModelEntity;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +25,7 @@ class Attachment extends ModelEntity
      *
      * @var Mails
      *
-     * @ORM\ManyToOne(targetEntity="TinectMailArchive\Models\Mails")
+     * @ORM\ManyToOne(targetEntity="FroshMailArchive\Models\Mails")
      * @ORM\JoinColumn(name="mail_id", referencedColumnName="id")
      */
     protected $mail;

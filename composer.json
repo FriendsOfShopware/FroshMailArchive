@@ -1,5 +1,5 @@
 {
-  "name": "tinect/mailarchive",
+  "name": "frosh/mail-archive",
   "keywords": [
     "shopware",
     "mail"
@@ -7,18 +7,10 @@
   "description": "",
   "license": "MIT",
   "type": "shopware-plugin",
-  "authors": [
-    {
-      "name": "tinect",
-      "homepage": "https://github.com/tinect",
-      "role": "Developer"
-    }
-  ],
   "extra": {
-    "installer-name": "TinectMailArchive"
+    "installer-name": "FroshMailArchive"
   },
   "require": {
     "composer/installers": "~1.0"
-  },
-  "abandoned": "frosh/mail-archive"
+  }
 }

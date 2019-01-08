@@ -6,19 +6,19 @@
 
 
     <parameters>
-        <parameter key="tinect_mail_archive.view_dir">%tinect_mail_archive.plugin_dir%/Resources/views</parameter>
+        <parameter key="frosh_mail_archive.view_dir">%frosh_mail_archive.plugin_dir%/Resources/views</parameter>
     </parameters>
 
     <services>
-        <service id="tinect_mail_archive.components.database_mail_transport" class="TinectMailArchive\Components\DatabaseMailTransport">
+        <service id="frosh_mail_archive.components.database_mail_transport" class="FroshMailArchive\Components\DatabaseMailTransport">
             <argument type="service" id="dbal_connection" />
         </service>
 
-        <service id="tinect_mail_archive.subscriber.backend_subscriber" class="TinectMailArchive\Subscriber\BackendSubscriber">
-            <argument type="string">%tinect_mail_archive.view_dir%</argument>
+        <service id="frosh_mail_archive.subscriber.backend_subscriber" class="FroshMailArchive\Subscriber\BackendSubscriber">
+            <argument type="string">%frosh_mail_archive.view_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
-        <service id="tinect_mail_archive.subscriber.on_mail_subscriber" class="TinectMailArchive\Subscriber\OnMailSubscriber">
+        <service id="frosh_mail_archive.subscriber.on_mail_subscriber" class="FroshMailArchive\Subscriber\OnMailSubscriber">
             <argument type="service" id="service_container" />
             <tag name="shopware.event_subscriber"/>
         </service>

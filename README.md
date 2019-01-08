@@ -1,11 +1,10 @@
-[This project has been transfered to FriendsOfShopware/FroshMailArchive](https://github.com/FriendsOfShopware/FroshMailArchive)
-# TinectMailArchive
+# FroshMailArchive
 
 ## Description
 
 This plugins adds an MailArchive to your Shopware-Backend stored in Database.
 
-Please note: TinectMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.
+Please note: FroshMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.
 
 ### Features
 
@@ -22,12 +21,12 @@ Please note: TinectMailArchive won't catch your mails, to prevent sending mails 
 
 ## Zip-Installation
 
-* Download the [latest plugin version](https://github.com/tinect/TinectMailArchive/releases/latest/)
+* Download the [latest plugin version](https://github.com/FriendsOfShopware/FroshMailArchive/releases/latest/)
 * Upload and install plugin using Plugin Manager
 
 ## Contributing
 
-Feel free to fork and send [pull requests](https://github.com/tinect/TinectMailArchive)!
+Feel free to fork and send [pull requests](https://github.com/FriendsOfShopware/FroshMailArchive)!
 
 
 ## Licence

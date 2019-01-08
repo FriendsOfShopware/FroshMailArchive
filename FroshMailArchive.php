@@ -1,6 +1,6 @@
 <?php
 
-namespace TinectMailArchive;
+namespace FroshMailArchive;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Shopware\Components\Plugin;
@@ -8,10 +8,10 @@ use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UpdateContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TinectMailArchive\Models\Attachment;
-use TinectMailArchive\Models\Mails;
+use FroshMailArchive\Models\Attachment;
+use FroshMailArchive\Models\Mails;
 
-class TinectMailArchive extends Plugin
+class FroshMailArchive extends Plugin
 {
 
     public function activate(ActivateContext $context)
@@ -36,7 +36,7 @@ class TinectMailArchive extends Plugin
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-        $container->setParameter('tinect_mail_archive.plugin_dir', $this->getPath());
+        $container->setParameter('frosh_mail_archive.plugin_dir', $this->getPath());
     }
 
     private function updateDatabase()

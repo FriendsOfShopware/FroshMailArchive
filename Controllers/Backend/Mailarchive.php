@@ -1,8 +1,8 @@
 <?php
 
 use Doctrine\ORM\AbstractQuery;
-use TinectMailArchive\Models\Attachment;
-use TinectMailArchive\Models\Mails;
+use FroshMailArchive\Models\Attachment;
+use FroshMailArchive\Models\Mails;
 
 /**
  * Class Shopware_Controllers_Backend_Mailarchive
@@ -19,7 +19,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     {
         if (!in_array($this->request->getActionName(), ['download', 'downloadAttachment'])) {
             parent::preDispatch();
-            $this->View()->addTemplateDir($this->container->getParameter('tinect_mail_archive.view_dir'));
+            $this->View()->addTemplateDir($this->container->getParameter('frosh_mail_archive.view_dir'));
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace TinectMailArchive\Models;
+namespace FroshMailArchive\Models;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -61,7 +61,7 @@ class Mails extends ModelEntity
     /**
      * INVERSE SIDE
      *
-     * @ORM\OneToMany(targetEntity="TinectMailArchive\Models\Attachment", mappedBy="mail", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="FroshMailArchive\Models\Attachment", mappedBy="mail", orphanRemoval=true, cascade={"persist"})
      *
      * @var ArrayCollection
      */

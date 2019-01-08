@@ -1,15 +1,15 @@
 <?php
 
-namespace TinectMailArchive\Subscriber;
+namespace FroshMailArchive\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Enlight_Components_Mail;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use TinectMailArchive\Components\DatabaseMailTransport;
+use FroshMailArchive\Components\DatabaseMailTransport;
 
 /**
  * Class ControllerPathSubscriber
- * @package TinectMailArchive\Subscriber
+ * @package FroshMailArchive\Subscriber
  */
 class OnMailSubscriber implements SubscriberInterface
 {
@@ -74,7 +74,7 @@ class OnMailSubscriber implements SubscriberInterface
 
         $mailsave = clone $mail;
 
-        $transport = $this->container->get('tinect_mail_archive.components.database_mail_transport');
+        $transport = $this->container->get('frosh_mail_archive.components.database_mail_transport');
         $mailsave->send($transport);
 
     }

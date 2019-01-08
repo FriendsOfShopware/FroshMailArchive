@@ -1,6 +1,6 @@
 <?php
 
-namespace TinectMailArchive\Subscriber;
+namespace FroshMailArchive\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 
