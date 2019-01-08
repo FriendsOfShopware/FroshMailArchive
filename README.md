@@ -1,3 +1,4 @@
+[This project has been transfered to FriendsOfShopware/FroshMailArchive](https://github.com/FriendsOfShopware/FroshMailArchive)
 # TinectMailArchive
 
 ## Description

@@ -4,15 +4,15 @@
 
     <label>TinectMailArchive</label>
 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <copyright>(c) by tinect</copyright>
     <license>MIT</license>
-    <link>https://github.com/tinect/TinectMailArchive</link>
+    <link>https://github.com/FriendsOfShopware/FroshMailArchive</link>
     <author>tinect</author>
     <compatibility minVersion="5.2.0" />
 
 	<description><![CDATA[
-
+<a href="https://github.com/FriendsOfShopware/FroshMailArchive" target="_blank" style="color:red">This project has been transfered to FriendsOfShopware/FroshMailArchive</a>
 <p>This plugins adds an MailArchive to your Shopware-Backend</p>
 
 <h3 id="features">Features</h3>
@@ -31,7 +31,7 @@
 </ul>
 
 <h2 id="contributing">Contributing</h2>
-<p>Feel free to fork and send <a href="https://github.com/tinect/TinectMailArchive" target="_blank">pull requests</a>!</p>
+<p>Feel free to fork and send <a href="https://github.com/FriendsOfShopware/FroshMailArchive" target="_blank">pull requests</a>!</p>
 
 <p>Please note: TinectMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.</p>
 <p>Thanks to <a href="https://github.com/FriendsOfShopware/FroshMailCatcher" target="_blank">@FroshMailCatcher</a> for your work!</p>
@@ -39,6 +39,14 @@
         ]]>
     </description>
 
+    <changelog version="1.0.3">
+        <changes lang="de"><![CDATA[
+        - Projekt-Transfer<br/>
+        ]]></changes>
+        <changes><![CDATA[
+        - project transfer<br/>
+        ]]></changes>
+    </changelog>
 
     <changelog version="1.0.2">
         <changes lang="de"><![CDATA[

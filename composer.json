@@ -19,5 +19,6 @@
   },
   "require": {
     "composer/installers": "~1.0"
-  }
+  },
+  "abandoned": "frosh/mail-archive"
 }
