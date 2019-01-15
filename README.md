@@ -8,7 +8,7 @@ Please note: FroshMailArchive won't catch your mails, to prevent sending mails f
 
 ### Features
 
-![Preview](preview.jpg)
+![Preview](Resources/store/images/0.jpg)
 
 - Download Mail as EML-File
 - Search Mails
