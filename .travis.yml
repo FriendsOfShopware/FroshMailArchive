@@ -1,0 +1,29 @@
+language: php
+php:
+  - 7.1
+  - 7.2
+sudo: false
+env:
+  global:
+  - PLUGIN_NAME=FroshMailArchive
+cache:
+  directories:
+    - ${HOME}/.composer/cache/files
+install:
+  - composer install
+script:
+  - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/blob/master/frosh-plugin-upload.phar?raw=true' -O frosh-plugin-upload.phar
+  - php frosh-plugin-upload.phar plugin:update ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}/Resources/store
+after_success:
+  - chmod +x ./build.sh
+  - ./build.sh $TRAVIS_TAG
+deploy:
+  provider: releases
+  api_key:
+    secure: w+mGd7B8a8HmKzHkmzHJYEpamlNRFpooyOIjY69say18BXzLtnrQtc40i6XFWldebUTtiYotvinoBFJDjyV//OQoAVVAWl4avITUf9u6D9MxRbU7dLbXJapsUq3lXmOlTJDu/lfBIVKYDfb0infgS7+B1z5yNS3DfFHHPF5tJakPvckRMDki9Xzt/3O6cwMuBTqd8TssmWPKou/ozOVVu2BBA58pbZJ2voRJOUqN6741eqhAPtJqK7O9qWC+Z82KAgaoF88lhe9N/+6kn1A/eJLxHsfduRUQI8QLaEGs3cskWnRARHLL3Qj+TkeD4U++azRQF3ykDsv2KPZQ4OjXWZM6VHUByjiVwW8DBCMND7Bt0bem9XOsKnU+D5GfxmAKqpiFeeRm0Oi9aEvaNR+llI37Eoq3UUclehUhxP+INNMSZdW3ZvYw8vhVbvhWivt2iGq41gJRwHL4LgvYm14UtS8Orh3AzoFdUClLxS+yOfZGTyq78eoLzVejvNq6yRFLG5ETODpcmjRVlqSzyufRnvhzjeJqRIlPwoagMW0Sl2cbCyYRXlM/7HGVFgLprYZURnNWw1dscDjNLk1oe1wmWtx9BErBEWIqC2V3C7N2ToMaGThLCshLrrNyNnSywgr/p6dDlnYLLooCthjHxyId7BbquJ7ri+ivjhBp8JtkG24=
+  file_glob: true
+  file: $PLUGIN_NAME*.zip
+  skip_cleanup: true
+  on:
+    repo: FriendsOfShopware/FroshMailArchive
+    tags: true
