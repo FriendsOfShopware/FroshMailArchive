@@ -38,6 +38,22 @@
         ]]>
     </description>
 
+    <description lang="de"><![CDATA[
+<p>Mit diesem Plugin erhalten Sie ein einfaches durchsuchbares Archiv für E-Mails, die aus Shopware versendet werden.<br>
+    Die E-Mails sind über den Menüpunkt "Einstellungen" -> "MailArchive" auffindbar.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+<li>Download Mail als EML-Datei</li>
+<li>Durchsuche Mails</li>
+<li>Zeigt Benachrichtigung auf dem Desktop, sofern akzeptiert</li>
+
+</ul>
+
+        ]]>
+    </description>
+
     <changelog version="1.0.0">
         <changes lang="de">Veröffentlichung</changes>
         <changes>Release</changes>
