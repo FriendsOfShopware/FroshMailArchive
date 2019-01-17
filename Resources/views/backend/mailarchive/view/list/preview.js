@@ -1,6 +1,7 @@
 Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
     extend: 'Ext.container.Container',
     autoScroll: true,
+    layout: 'fit',
 
     initComponent: function () {
         var me = this,
@@ -8,11 +9,10 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
 
         if (me.record.raw.bodyHtml !== null) {
             items.push({
-                xtype: 'container',
+                xtype: 'panel',
                 title: 'Html',
-                padding: 10,
                 height: '100%',
-                html: '<div style="margin: 15px">' + me.record.raw.bodyHtml + '</div>',
+                html: me.disableJavascript(me.record.raw.bodyHtml),
                 disabled: me.record.raw.bodyHtml === null
             });
         }
@@ -23,7 +23,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
                 title: 'Text',
                 padding: 10,
                 height: '100%',
-                html: '<div style="margin:15px"><pre>' + me.record.raw.bodyText + '</pre></div>',
+                html: '<div style="margin:15px"><pre>' + me.escapeHtml(me.record.raw.bodyText) + '</pre></div>',
                 disabled: me.record.raw.bodyText === null
             });
         }
@@ -38,5 +38,22 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
         };
 
         me.callParent(arguments);
+    },
+
+    //See https://stackoverflow.com/questions/1787322/htmlspecialchars-equivalent-in-javascript
+    escapeHtml: function(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    },
+
+    disableJavascript: function (html) {
+        return "<iframe src=\"data:text/html;base64," + btoa(html) + "\" sandbox></iframe>";
     }
 });
