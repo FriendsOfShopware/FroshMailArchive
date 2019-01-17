@@ -11,6 +11,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
             items.push({
                 xtype: 'panel',
                 title: 'Html',
+                padding: 25,
                 height: '100%',
                 html: me.disableJavascript(me.record.raw.bodyHtml),
                 disabled: me.record.raw.bodyHtml === null
@@ -21,9 +22,9 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
             items.push({
                 xtype: 'container',
                 title: 'Text',
-                padding: 10,
+                padding: 25,
                 height: '100%',
-                html: '<div style="margin:15px"><pre>' + me.escapeHtml(me.record.raw.bodyText) + '</pre></div>',
+                html: '<pre style="white-space: pre-wrap">' + me.escapeHtml(me.record.raw.bodyText) + '</pre>',
                 disabled: me.record.raw.bodyText === null
             });
         }
@@ -54,6 +55,9 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
     },
 
     disableJavascript: function (html) {
-        return "<iframe src=\"data:text/html;base64," + btoa(html) + "\" sandbox></iframe>";
-    }
+        return "<iframe src=\"data:text/html;base64," + btoa(html.replace(/[\u00A0-\u2666]/g, function(c) {
+            return '&#' + c.charCodeAt(0) + ';';
+        })) + "\" sandbox></iframe>";
+    },
+
 });
