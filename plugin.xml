@@ -2,7 +2,8 @@
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
 
-    <label>FroshMailArchive</label>
+    <label>Mail Archive</label>
+    <label lang="de">Mail Archive</label>
 
     <version>1.0.0</version>
     <copyright>Friends of Shopware</copyright>
