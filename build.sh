@@ -9,7 +9,7 @@ if [ -z ${commit} ]; then
 fi
 
 # Remove old release
-rm -rf ${PLUGIN_NAME} ${PLUGIN_NAME}-*.zip
+rm -rf ${PLUGIN_NAME} ${PLUGIN_NAME}*.zip
 
 # Build new release
 mkdir -p ${PLUGIN_NAME}

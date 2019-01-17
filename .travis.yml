@@ -46,7 +46,8 @@ after_success:
   - ./build.sh $TRAVIS_TAG
 
 stages:
-  - Store-Check
+  - name: Store-Check
+    if: tag NOT present
   - name: Store-Sync
     if: branch = master
   - name: Store-Deploy
@@ -59,7 +60,7 @@ jobs:
       before_script: skip
       install:
         - chmod +x ./build.sh
-        - ./build.sh master
+        - ./build.sh "master"
         - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/blob/master/frosh-plugin-upload.phar?raw=true' -O frosh-plugin-upload.phar
       script:
         - php frosh-plugin-upload.phar plugin:validate ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
