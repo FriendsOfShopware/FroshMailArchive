@@ -47,9 +47,9 @@ after_success:
 
 stages:
   - name: Store-Check
-    if: tag IS blank
+    if: tag IS blank AND env(PLUGIN_ID) IS present
   - name: Store-Sync
-    if: branch = master
+    if: branch = master AND env(PLUGIN_ID) IS present
   - name: Store-Deploy
     if: tag IS present
 
