@@ -47,7 +47,7 @@ after_success:
 
 stages:
   - name: Store-Check
-    if: tag NOT present
+    if: tag IS blank
   - name: Store-Sync
     if: branch = master
   - name: Store-Deploy

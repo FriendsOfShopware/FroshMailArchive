@@ -24,17 +24,10 @@
 
 </ul>
 
-<h3 id="plannedfeatures">Planned Features</h3>
-
-<ul>
-<li>...idea?</li>
-</ul>
-
 <h2 id="contributing">Contributing</h2>
 <p>Feel free to fork and send <a href="https://github.com/FriendsOfShopware/FroshMailArchive" target="_blank">pull requests</a>!</p>
 
 <p>Please note: FroshMailArchive won't catch your mails, to prevent sending mails from your shop! Use MailCatcher for this job, as it is a job in developing-state.</p>
-<p>Thanks to <a href="https://github.com/FriendsOfShopware/FroshMailCatcher" target="_blank">@FroshMailCatcher</a> for your work!</p>
 
         ]]>
     </description>
