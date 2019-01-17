@@ -15,5 +15,5 @@ rm -rf ${PLUGIN_NAME} ${PLUGIN_NAME}*.zip
 mkdir -p ${PLUGIN_NAME}
 git archive ${commit} | tar -x -C ${PLUGIN_NAME}
 composer install --no-dev -n -o -d ${PLUGIN_NAME}
-( find ./${PLUGIN_NAME} -type d -name ".git" && find ./${PLUGIN_NAME} -name ".gitignore" && find ./${PLUGIN_NAME} -name ".gitmodules" ) | xargs rm -r
+( find ./${PLUGIN_NAME} -type d -name ".git" && find ./${PLUGIN_NAME} -name "build.sh" && find ./${PLUGIN_NAME} -name "*.md"  && find ./${PLUGIN_NAME} -name ".gitignore" && find ./${PLUGIN_NAME} -name ".gitmodules" ) | xargs rm -r
 zip -r ${PLUGIN_NAME}-${commit}.zip ${PLUGIN_NAME}
