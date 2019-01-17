@@ -38,6 +38,9 @@ before_script:
   - php ${HOME}/shopware/bin/console sw:plugin:activate ${PLUGIN_NAME}
   - cd ${PLUGIN_DIRECTORY}/${PLUGIN_NAME}
 
+script:
+  -
+
 after_success:
   - chmod +x ./build.sh
   - ./build.sh $TRAVIS_TAG
