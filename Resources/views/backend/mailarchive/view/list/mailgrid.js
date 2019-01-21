@@ -18,7 +18,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
 
         me.columns = [
             {
-                text: 'Send-Date',
+                text: '{s namespace="froshmailarchive" name="label_senddate"}Send-date{/s}',
                 dataIndex: 'created',
                 flex: 1,
                 renderer: function (value, metaData, record) {
@@ -32,7 +32,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 }
             },
             {
-                text: 'From',
+                text: '{s namespace="froshmailarchive" name="label_frommail"}Sender{/s}',
                 dataIndex: 'senderAddress',
                 flex: 1,
                 renderer: function (value, metaData, record) {
@@ -41,7 +41,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 }
             },
             {
-                text: 'To',
+                text: '{s namespace="froshmailarchive" name="label_tomail"}Receivers{/s}',
                 dataIndex: 'receiverAddress',
                 flex: 1,
                 renderer: function (value, metaData, record) {
@@ -50,7 +50,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 }
             },
             {
-                text: 'Subject',
+                text: '{s namespace="froshmailarchive" name="label_subject"}Subject{/s}',
                 dataIndex: 'subject',
                 flex: 1.5,
                 renderer: function (value, metaData, record) {
@@ -63,7 +63,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 items: [
                     {
                         iconCls: 'sprite-drive-download',
-                        tooltip: 'Download',
+                        tooltip: '{s namespace="froshmailarchive" name="action_download"}Download{/s}',
                         action: 'download',
                         handler: function (view, rowIndex) {
                             var store = view.getStore(),
@@ -75,7 +75,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                     },
                     {
                         iconCls: 'sprite-minus-circle-frame',
-                        tooltip: 'Delete',
+                        tooltip: '{s namespace="froshmailarchive" name="action_delete"}Delete{/s}',
                         handler: function (view, rowIndex, colIndex, item) {
                             var store = view.getStore(),
                                 record = store.getAt(rowIndex);
@@ -141,10 +141,10 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
         var me = this, items = [];
 
         items.push(Ext.create('Ext.button.Button', {
-            text: 'Clear Archive',
+            text: '{s namespace="froshmailarchive" name="action_cleararchive"}Clear Archive{/s}',
             iconCls: 'sprite-minus-circle-frame',
             handler: function () {
-                Ext.MessageBox.confirm('', 'Are you sure?', function (apply) {
+                Ext.MessageBox.confirm('', '{s namespace="froshmailarchive" name="label_suretoclear"}Are you sure you want to clear the archive?{/s}', function (apply) {
                     if (apply !== 'yes') {
                         return;
                     }
@@ -163,7 +163,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
         items.push(Ext.create('Ext.form.field.Text', {
             cls: 'searchfield',
             width: 170,
-            emptyText: 'Search',
+            emptyText: '{s namespace="froshmailarchive" name="label_search"}search...{/s}',
             enableKeyEvents: true,
             checkChangeBuffer: 500,
             listeners: {
