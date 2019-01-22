@@ -1,6 +1,8 @@
 language: php
 
 php:
+  - 5.6
+  - 7.0
   - 7.1
   - 7.2
 
@@ -60,7 +62,7 @@ jobs:
       before_script: skip
       install:
         - chmod +x ./build.sh
-        - ./build.sh "master"
+        - ./build.sh ${TRAVIS_BRANCH}
         - wget 'https://github.com/FriendsOfShopware/FroshPluginUploader/blob/master/frosh-plugin-upload.phar?raw=true' -O frosh-plugin-upload.phar
       script:
         - php frosh-plugin-upload.phar plugin:validate ${TRAVIS_BUILD_DIR}/${PLUGIN_NAME}*.zip
