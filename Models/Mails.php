@@ -4,8 +4,8 @@ namespace FroshMailArchive\Models;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
-use Shopware\Components\Model\ModelEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Shopware\Components\Model\ModelEntity;
 
 /**
  * @ORM\Table(name="s_plugin_tinectmailarchive")
@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Mails extends ModelEntity
 {
+    /**
+     * INVERSE SIDE
+     *
+     * @ORM\OneToMany(targetEntity="FroshMailArchive\Models\Attachment", mappedBy="mail", orphanRemoval=true, cascade={"persist"})
+     *
+     * @var ArrayCollection
+     */
+    protected $attachments;
     /**
      * @var int
      *
@@ -59,20 +67,10 @@ class Mails extends ModelEntity
     private $bodyHtml;
 
     /**
-     * INVERSE SIDE
-     *
-     * @ORM\OneToMany(targetEntity="FroshMailArchive\Models\Attachment", mappedBy="mail", orphanRemoval=true, cascade={"persist"})
-     *
-     * @var ArrayCollection
-     */
-    protected $attachments;
-
-    /**
-     *
      * @var string
      * @ORM\Column(name="eml", type="text", nullable=true)
      */
-    protected $eml;
+    private $eml;
 
     /**
      * Mails constructor.

@@ -9,7 +9,6 @@ use FroshMailArchive\Models\Mails;
  */
 class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Backend_Application implements \Shopware\Components\CSRFWhitelistAware
 {
-
     /**
      * @var string
      */
@@ -29,7 +28,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     public function lastMailAction()
     {
         $this->View()->success = true;
-        $this->View()->id = (int)$this->container->get('dbal_connection')->fetchColumn('SELECT id FROM s_plugin_tinectmailarchive ORDER BY id DESC LIMIT 1');
+        $this->View()->id = (int) $this->container->get('dbal_connection')->fetchColumn('SELECT id FROM s_plugin_tinectmailarchive ORDER BY id DESC LIMIT 1');
     }
 
     /**
@@ -77,7 +76,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
         $response = $this->response;
         $response->setHeader('Content-Type', 'application/octet-stream');
         $response->setHeader('Content-Disposition',
-            'attachment; filename="' . $attachment->getFileName().'"');
+            'attachment; filename="' . $attachment->getFileName() . '"');
 
         $this->response->setBody(base64_decode($attachment->getContent()));
     }

@@ -6,7 +6,6 @@ use Enlight\Event\SubscriberInterface;
 
 /**
  * Class BackendSubscriber
- * @package ShyimMailCatcher\Subscriber
  */
 class BackendSubscriber implements SubscriberInterface
 {
@@ -22,12 +21,13 @@ class BackendSubscriber implements SubscriberInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return array
      */
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Action_PostDispatch_Backend_Index' => 'onBackendIndex'
+            'Enlight_Controller_Action_PostDispatch_Backend_Index' => 'onBackendIndex',
         ];
     }
 

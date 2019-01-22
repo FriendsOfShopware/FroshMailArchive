@@ -3,17 +3,16 @@
 namespace FroshMailArchive;
 
 use Doctrine\ORM\Tools\SchemaTool;
+use FroshMailArchive\Models\Attachment;
+use FroshMailArchive\Models\Mails;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UpdateContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use FroshMailArchive\Models\Attachment;
-use FroshMailArchive\Models\Mails;
 
 class FroshMailArchive extends Plugin
 {
-
     public function activate(ActivateContext $context)
     {
         $context->scheduleClearCache(InstallContext::CACHE_LIST_DEFAULT);
@@ -47,5 +46,4 @@ class FroshMailArchive extends Plugin
             $this->container->get('models')->getClassMetadata(Attachment::class),
         ], true);
     }
-
 }

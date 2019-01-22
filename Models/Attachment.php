@@ -2,8 +2,8 @@
 
 namespace FroshMailArchive\Models;
 
-use Shopware\Components\Model\ModelEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Shopware\Components\Model\ModelEntity;
 
 /**
  * @ORM\Table(name="s_plugin_tinectmailarchive_attachments")
@@ -11,15 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Attachment extends ModelEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * OWNING SIDE
      *
@@ -29,6 +20,14 @@ class Attachment extends ModelEntity
      * @ORM\JoinColumn(name="mail_id", referencedColumnName="id")
      */
     protected $mail;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
      * @ORM\Column(name="file_name", type="string", nullable=false)

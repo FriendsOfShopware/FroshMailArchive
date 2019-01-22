@@ -4,16 +4,14 @@ namespace FroshMailArchive\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Enlight_Components_Mail;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use FroshMailArchive\Components\DatabaseMailTransport;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class ControllerPathSubscriber
- * @package FroshMailArchive\Subscriber
  */
 class OnMailSubscriber implements SubscriberInterface
 {
-
     /**
      * @var ContainerInterface
      */
@@ -21,6 +19,7 @@ class OnMailSubscriber implements SubscriberInterface
 
     /**
      * ControllerPathSubscriber constructor.
+     *
      * @param $container
      */
     public function __construct($container)
@@ -76,6 +75,5 @@ class OnMailSubscriber implements SubscriberInterface
 
         $transport = $this->container->get('frosh_mail_archive.components.database_mail_transport');
         $mailsave->send($transport);
-
     }
 }
