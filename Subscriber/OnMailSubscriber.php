@@ -71,9 +71,34 @@ class OnMailSubscriber implements SubscriberInterface
             return;
         }
 
+        $this->resolveStreams($mail);
+
         $mailsave = clone $mail;
 
         $transport = $this->container->get('frosh_mail_archive.components.database_mail_transport');
         $mailsave->send($transport);
+    }
+
+    private function resolveStreams(Enlight_Components_Mail $mail)
+    {
+        $parts = $mail->getParts();
+
+        /**
+         * @var string $key
+         *
+         * @var \Zend_Mime_Part $part
+         */
+        foreach ($parts as $key => $part) {
+            if ($part->disposition === 'attachment' && $part->isStream()) {
+                $attachment = $mail->createAttachment($part->getRawContent());
+                $attachment->filename = $part->filename;
+                $attachment->disposition = $part->disposition;
+                $attachment->type = $part->type;
+
+                $parts[$key] = $attachment;
+            }
+        }
+
+        $mail->setParts($parts);
     }
 }
