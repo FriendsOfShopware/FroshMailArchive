@@ -5,7 +5,7 @@
     <label>Mail Archive</label>
     <label lang="de">Mail Archive</label>
 
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://github.com/FriendsOfShopware/FroshMailArchive</link>
@@ -47,6 +47,11 @@
 
         ]]>
     </description>
+
+    <changelog version="1.0.3">
+        <changes lang="de">Behebe Probleme mit Attachment-Streams (z.B. Shopware ERP)</changes>
+        <changes>Fix attachments as stream (f.e. used by Shopware ERP)</changes>
+    </changelog>
 
     <changelog version="1.0.2">
         <changes lang="de">Zeige Beschriftung in Benutzersprache</changes>
