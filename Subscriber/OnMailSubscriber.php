@@ -4,8 +4,7 @@ namespace FroshMailArchive\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Enlight_Components_Mail;
-use FroshMailArchive\Components\DatabaseMailTransport;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use FroshMailArchive\Components\DatabaseMailSave;
 
 /**
  * Class ControllerPathSubscriber
@@ -13,18 +12,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OnMailSubscriber implements SubscriberInterface
 {
     /**
-     * @var ContainerInterface
+     * @var DatabaseMailSave
      */
-    private $container;
+    private $mailSave;
 
     /**
-     * ControllerPathSubscriber constructor.
-     *
-     * @param $container
+     * @param DatabaseMailSave $mailSave
      */
-    public function __construct($container)
+    public function __construct(DatabaseMailSave $mailSave)
     {
-        $this->container = $container;
+        $this->mailSave = $mailSave;
     }
 
     public static function getSubscribedEvents()
@@ -41,7 +38,7 @@ class OnMailSubscriber implements SubscriberInterface
 
         $this->resolveStreams($mail);
 
-        $this->container->get('frosh_mail_archive.components.database_mail_save')->save(clone $mail);
+        $this->mailSave->save(clone $mail);
     }
 
     private function resolveStreams(Enlight_Components_Mail $mail)
