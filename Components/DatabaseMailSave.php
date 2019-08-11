@@ -3,6 +3,7 @@
 
 namespace FroshMailArchive\Components;
 
+use DateTime;
 use Doctrine\DBAL\Connection;
 use Enlight_Components_Mail;
 
@@ -51,8 +52,9 @@ class DatabaseMailSave
             }
         }
 
-        $mailHeaders[] = 'Content-Type: multipart/alternative;
-boundary="' . $mail->getMime()->boundary() . '"';
+        $mailHeaders[] = 'Date: '.date(DateTime::RFC2822);
+        $mailHeaders[] = 'Content-Type: multipart/alternative;';
+        $mailHeaders[] = ' boundary="' . $mail->getMime()->boundary() . '"';
         $mailHeaders[] = 'MIME-Version: 1.0';
 
         $mailHeaders = \array_filter($mailHeaders);
@@ -63,7 +65,6 @@ boundary="' . $mail->getMime()->boundary() . '"';
         $eml .= 'Content-Transfer-Encoding: base64' . PHP_EOL . PHP_EOL;
         $eml .= \chunk_split(\base64_encode($mail->getPlainBody()), 74, PHP_EOL) . PHP_EOL;
         $eml .= $mail->getMime()->boundaryLine();
-
 
         $this->connection->insert('s_plugin_tinectmailarchive', [
             'created' => date('Y-m-d H:i:s'),
