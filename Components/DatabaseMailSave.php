@@ -43,6 +43,27 @@ class DatabaseMailSave
             }
         }
 
+        $mailHeaders = [];
+
+        foreach ((array) $mail->getHeaders() as $name => $header) {
+            if ($header[0]) {
+                $mailHeaders[] = $name . ': ' . $header[0];
+            }
+        }
+
+        $mailHeaders[] = 'Content-Type: multipart/alternative;
+boundary="' . $mail->getMime()->boundary() . '"';
+        $mailHeaders[] = 'MIME-Version: 1.0';
+
+        $mailHeaders = \array_filter($mailHeaders);
+
+        $eml = \implode(PHP_EOL, $mailHeaders) . PHP_EOL;
+        $eml .= $mail->getMime()->boundaryLine();
+        $eml .= 'Content-Type: text/html; charset=utf-8' . PHP_EOL;
+        $eml .= 'Content-Transfer-Encoding: base64' . PHP_EOL . PHP_EOL;
+        $eml .= \chunk_split(\base64_encode($mail->getPlainBody()), 74, PHP_EOL) . PHP_EOL;
+        $eml .= $mail->getMime()->boundaryLine();
+
 
         $this->connection->insert('s_plugin_tinectmailarchive', [
             'created' => date('Y-m-d H:i:s'),
@@ -51,7 +72,7 @@ class DatabaseMailSave
             'subject' => iconv_mime_decode($mail->getSubject()),
             'bodyText' => $mail->getPlainBodyText(),
             'bodyHtml' => $mail->getPlainBody(),
-            'eml' => $mail->header . PHP_EOL . $this->body,
+            'eml' => $eml,
         ]);
 
         $insertId = $this->connection->lastInsertId();
