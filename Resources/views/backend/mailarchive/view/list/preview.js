@@ -55,9 +55,9 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Preview', {
     },
 
     disableJavascript: function (html) {
-        return "<iframe src=\"data:text/html;base64," + btoa(html.replace(/[\u00A0-\u2666]/g, function(c) {
+        return "<iframe src=\"data:text/html;base64," + btoa(unescape(encodeURIComponent(html.replace(/[\u00A0-\u2666]/g, function(c) {
             return '&#' + c.charCodeAt(0) + ';';
-        })) + "\" sandbox></iframe>";
+        })))) + "\" sandbox></iframe>";
     },
 
 });

@@ -4,8 +4,7 @@ namespace FroshMailArchive\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Enlight_Components_Mail;
-use FroshMailArchive\Components\DatabaseMailTransport;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use FroshMailArchive\Components\DatabaseMailSave;
 
 /**
  * Class ControllerPathSubscriber
@@ -13,48 +12,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class OnMailSubscriber implements SubscriberInterface
 {
     /**
-     * @var ContainerInterface
+     * @var DatabaseMailSave
      */
-    private $container;
+    private $mailSave;
 
     /**
-     * ControllerPathSubscriber constructor.
-     *
-     * @param $container
+     * @param DatabaseMailSave $mailSave
      */
-    public function __construct($container)
+    public function __construct(DatabaseMailSave $mailSave)
     {
-        $this->container = $container;
+        $this->mailSave = $mailSave;
     }
 
-    /**
-     * Returns an array of event names this subscriber wants to listen to.
-     *
-     * The array keys are event names and the value can be:
-     *
-     *  * The method name to call (position defaults to 0)
-     *  * An array composed of the method name to call and the priority
-     *  * An array of arrays composed of the method names to call and respective
-     *    priorities, or 0 if unset
-     *
-     * For instance:
-     *
-     * <code>
-     * return array(
-     *     'eventName0' => 'callback0',
-     *     'eventName1' => array('callback1'),
-     *     'eventName2' => array('callback2', 10),
-     *     'eventName3' => array(
-     *         array('callback3_0', 5),
-     *         array('callback3_1'),
-     *         array('callback3_2')
-     *     )
-     * );
-     *
-     * </code>
-     *
-     * @return array The event names to listen to
-     */
     public static function getSubscribedEvents()
     {
         return [
@@ -67,16 +36,9 @@ class OnMailSubscriber implements SubscriberInterface
         /** @var Enlight_Components_Mail $mail */
         $mail = $args->get('mail');
 
-        if ($args->get('transport') instanceof DatabaseMailTransport) {
-            return;
-        }
-
         $this->resolveStreams($mail);
 
-        $mailsave = clone $mail;
-
-        $transport = $this->container->get('frosh_mail_archive.components.database_mail_transport');
-        $mailsave->send($transport);
+        $this->mailSave->save(clone $mail);
     }
 
     private function resolveStreams(Enlight_Components_Mail $mail)

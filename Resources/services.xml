@@ -4,22 +4,20 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-
     <parameters>
         <parameter key="frosh_mail_archive.view_dir">%frosh_mail_archive.plugin_dir%/Resources/views</parameter>
     </parameters>
 
     <services>
-        <service id="frosh_mail_archive.components.database_mail_transport" class="FroshMailArchive\Components\DatabaseMailTransport">
+        <service id="frosh_mail_archive.components.database_mail_save" class="FroshMailArchive\Components\DatabaseMailSave">
             <argument type="service" id="dbal_connection" />
         </service>
-
         <service id="frosh_mail_archive.subscriber.backend_subscriber" class="FroshMailArchive\Subscriber\BackendSubscriber">
             <argument type="string">%frosh_mail_archive.view_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
         <service id="frosh_mail_archive.subscriber.on_mail_subscriber" class="FroshMailArchive\Subscriber\OnMailSubscriber">
-            <argument type="service" id="service_container" />
+            <argument type="service" id="frosh_mail_archive.components.database_mail_save" />
             <tag name="shopware.event_subscriber"/>
         </service>
     </services>
