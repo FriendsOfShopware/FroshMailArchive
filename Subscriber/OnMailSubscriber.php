@@ -27,7 +27,7 @@ class OnMailSubscriber implements SubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Components_Mail_Send' => ['onMail', 9999],
+            'Enlight_Components_Mail_Send' => ['onMail'],
         ];
     }
 

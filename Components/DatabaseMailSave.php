@@ -68,7 +68,7 @@ class DatabaseMailSave
 
         $this->connection->insert('s_plugin_tinectmailarchive', [
             'created' => date('Y-m-d H:i:s'),
-            'senderAddress' => $mail->getFrom(),
+            'senderAddress' => $mail->getFrom() . '',
             'receiverAddress' => implode(',', $mail->getRecipients()),
             'subject' => iconv_mime_decode($mail->getSubject()),
             'bodyText' => $mail->getPlainBodyText(),
