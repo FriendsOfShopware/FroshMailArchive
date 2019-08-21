@@ -5,7 +5,7 @@
     <label>Mail Archive</label>
     <label lang="de">Mail Archive</label>
 
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <copyright>Friends of Shopware</copyright>
     <license>MIT</license>
     <link>https://github.com/FriendsOfShopware/FroshMailArchive</link>
@@ -47,6 +47,11 @@
 
         ]]>
     </description>
+
+    <changelog version="1.0.5">
+        <changes lang="de">Bugfix für nicht initial gesetzte Absender</changes>
+        <changes>Bugfix for non-initial set sender</changes>
+    </changelog>
 
     <changelog version="1.0.4">
         <changes lang="de">Kompatibilitäts-Update für Shopware 5.6</changes>
