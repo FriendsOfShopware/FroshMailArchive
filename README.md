@@ -12,6 +12,7 @@ Please note: FroshMailArchive won't catch your mails, to prevent sending mails f
 
 - Download Mail as EML-File
 - Search Mails
+- Resend Mails (with all attachments)
 - shows notification for new mails, if accepted
 
 ### Planned Features
