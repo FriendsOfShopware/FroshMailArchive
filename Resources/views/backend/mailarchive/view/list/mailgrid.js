@@ -59,7 +59,7 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                 }
             },
             Ext.create('Ext.grid.column.Action', {
-                width: 60,
+                width: 90,
                 items: [
                     {
                         iconCls: 'sprite-drive-download',
@@ -71,6 +71,27 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                                 link = "{url action=download}"
                                     + "?id=" + record.raw.id;
                             window.open(link, '_blank');
+                        }
+                    },
+                    {
+                        iconCls: 'sprite-mail-send',
+                        tooltip: '{s namespace="froshmailarchive" name="action_resend"}Resend{/s}',
+                        handler: function (view, rowIndex, colIndex, item) {
+                            var store = view.getStore(),
+                                record = store.getAt(rowIndex),
+                                link = "{url action=resend}"
+                                    + "?id=" + record.raw.id;
+                            Ext.Ajax.request({
+                                url: link,
+                                method: 'GET',
+                                success: function (response, operation) {
+                                    Shopware.Notification.createGrowlMessage('{s namespace="froshmailarchive" name=send_success_title}Success sending mail{/s}');
+                                    store.load();
+                                },
+                                error: function () {
+                                    Shopware.Notification.createGrowlMessage('{s namespace="froshmailarchive" name=send_error_title}Error sending mail{/s}');
+                                }
+                            });
                         }
                     },
                     {

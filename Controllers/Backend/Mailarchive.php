@@ -16,7 +16,7 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
 
     public function preDispatch()
     {
-        if (!in_array($this->request->getActionName(), ['download', 'downloadAttachment'])) {
+        if (!in_array($this->request->getActionName(), ['download', 'downloadAttachment', 'resend'])) {
             parent::preDispatch();
             $this->View()->addTemplateDir($this->container->getParameter('frosh_mail_archive.view_dir'));
         }
@@ -107,6 +107,50 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     }
 
     /**
+     * Resend email
+     */
+    public function resendAction()
+    {
+        $this->Front()->Plugins()->ViewRenderer()->setNoRender();
+
+        $mailId = $this->Request()->getParam('id');
+        $mail = $this->getModelManager()->find(Mails::class, $mailId);
+
+        $htmlData = $mail->getBodyHtml();
+        $textData = $mail->getBodyText();
+        $attachments = $mail->getAttachments();
+        $recieverString = $mail->getReceiverAddress();
+        $recievers = explode(',', $recieverString);
+
+        if ($textData) {
+            $mailObj = Shopware()->TemplateMail()->createMail('sORDER');
+            foreach ($recievers as $reciever) {
+                $mailObj->addTo($reciever);
+            }
+            $mailObj->clearSubject();
+            $mailObj->clearBody();
+            $mailObj->setBodyText($textData);
+            $mailObj->setBodyHtml($htmlData);
+            $mailObj->setSubject($mail->getSubject());
+            foreach ($attachments as $attachment) {
+                $fileName = $attachment->getFileName();
+                $data = base64_decode($attachment->getContent());
+                if ($data) {
+                    $mailObj->createAttachment(
+                        $data,
+                        \Zend_Mime::TYPE_OCTETSTREAM,
+                        \Zend_Mime::DISPOSITION_ATTACHMENT,
+                        \Zend_Mime::ENCODING_BASE64,
+                        $fileName
+                    );
+                }
+            }
+            $this->container->get('pluginlogger')->info("Mail re-sent to: $reciever");
+            $mailObj->send();
+        }
+    }
+
+    /**
      * Clear all entries in mailbox
      */
     public function clearAction()
@@ -124,6 +168,6 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
      */
     public function getWhitelistedCSRFActions()
     {
-        return ['downloadAttachment', 'download'];
+        return ['downloadAttachment', 'download', 'resend'];
     }
 }
