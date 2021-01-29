@@ -79,11 +79,14 @@ Ext.define('Shopware.apps.Mailarchive.view.list.Mailgrid', {
                         handler: function (view, rowIndex, colIndex, item) {
                             var store = view.getStore(),
                                 record = store.getAt(rowIndex),
-                                link = "{url action=resend}"
-                                    + "?id=" + record.raw.id;
+                                link = "{url action=resend}";
                             Ext.Ajax.request({
                                 url: link,
-                                method: 'GET',
+                                method: 'POST',
+                                async: false,
+                                params: {
+                                    id: record.raw.id
+                                },
                                 success: function (response, operation) {
                                     Shopware.Notification.createGrowlMessage('{s namespace="froshmailarchive" name=send_success_title}Success sending mail{/s}');
                                     store.load();

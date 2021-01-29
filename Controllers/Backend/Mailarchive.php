@@ -37,8 +37,10 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
     public function getNewMailsAction()
     {
         $this->View()->success = true;
-        $mails = $this->container->get('dbal_connection')->fetchAll('SELECT id, subject, receiverAddress FROM s_plugin_tinectmailarchive WHERE id > :id ORDER BY id ASC',
-            ['id' => $this->Request()->getParam('id')]);
+        $mails = $this->container->get('dbal_connection')->fetchAll(
+            'SELECT id, subject, receiverAddress FROM s_plugin_tinectmailarchive WHERE id > :id ORDER BY id ASC',
+            ['id' => $this->Request()->getParam('id')]
+        );
         $this->View()->mails = $mails;
     }
 
@@ -75,8 +77,10 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
 
         $response = $this->response;
         $response->setHeader('Content-Type', 'application/octet-stream');
-        $response->setHeader('Content-Disposition',
-            'attachment; filename="' . $attachment->getFileName() . '"');
+        $response->setHeader(
+            'Content-Disposition',
+            'attachment; filename="' . $attachment->getFileName() . '"'
+        );
 
         $this->response->setBody(base64_decode($attachment->getContent()));
     }
@@ -97,8 +101,10 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
 
         if ($emlData) {
             $response->setHeader('Content-Type', 'application/octet-stream');
-            $response->setHeader('Content-Disposition',
-                'attachment; filename="' . $eml->getCreated()->format('Y-m-d His') . ' ' . $eml->getSubject() . '.eml"');
+            $response->setHeader(
+                'Content-Disposition',
+                'attachment; filename="' . $eml->getCreated()->format('Y-m-d His') . ' ' . $eml->getSubject() . '.eml"'
+            );
 
             $this->response->setBody($emlData);
         } else {
@@ -119,11 +125,13 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
         $htmlData = $mail->getBodyHtml();
         $textData = $mail->getBodyText();
         $attachments = $mail->getAttachments();
+        $sender = $mail->getSenderAddress();
         $recieverString = $mail->getReceiverAddress();
         $recievers = explode(',', $recieverString);
 
         if ($textData) {
-            $mailObj = Shopware()->TemplateMail()->createMail('sORDER');
+            $mailObj = clone $this->container->get('mail');
+            $mailObj->setFrom($sender);
             foreach ($recievers as $reciever) {
                 $mailObj->addTo($reciever);
             }
@@ -145,7 +153,6 @@ class Shopware_Controllers_Backend_Mailarchive extends Shopware_Controllers_Back
                     );
                 }
             }
-            $this->container->get('pluginlogger')->info("Mail re-sent to: $reciever");
             $mailObj->send();
         }
     }
